@@ -7,6 +7,15 @@ export const STATES = ["Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chh
 
 const EMPTY = { state: "", category: "", gender: "", income: "", course_level: "", year: "", marks: "", disability: false, minority: false };
 
+const Field = ({ id, label, children, hint, errors }) => (
+  <div className={"field" + (errors[id] ? " has-error" : "")}>
+    <label htmlFor={id}>{label}</label>
+    {children}
+    {hint && <small>{hint}</small>}
+    {errors[id] && <span className="err">{errors[id]}</span>}
+  </div>
+);
+
 export default function Find() {
   const nav = useNavigate();
   const { profile, setProfile, setResult } = useMatch();
@@ -48,56 +57,47 @@ export default function Find() {
     }
   }
 
-  const Field = ({ id, label, children, hint }) => (
-    <div className={"field" + (errors[id] ? " has-error" : "")}>
-      <label htmlFor={id}>{label}</label>
-      {children}
-      {hint && <small>{hint}</small>}
-      {errors[id] && <span className="err">{errors[id]}</span>}
-    </div>
-  );
-
   return (
     <section className="card form-card">
       <h2>Your details</h2>
       <p className="muted">Used only to find matches. Nothing is stored.</p>
       <form onSubmit={submit} noValidate>
         <div className="grid">
-          <Field id="state" label="State">
+          <Field errors={errors} id="state" label="State">
             <select id="state" value={f.state} onChange={set("state")}>
               <option value="">Select state</option>
               {STATES.map((s) => <option key={s}>{s}</option>)}
             </select>
           </Field>
-          <Field id="category" label="Category">
+          <Field errors={errors} id="category" label="Category">
             <select id="category" value={f.category} onChange={set("category")}>
               <option value="">Select category</option>
               {["General", "OBC", "SC", "ST", "EWS"].map((s) => <option key={s}>{s}</option>)}
             </select>
           </Field>
-          <Field id="gender" label="Gender">
+          <Field errors={errors} id="gender" label="Gender">
             <select id="gender" value={f.gender} onChange={set("gender")}>
               <option value="">Select gender</option>
               {["Male", "Female", "Other"].map((s) => <option key={s}>{s}</option>)}
             </select>
           </Field>
-          <Field id="income" label="Annual family income (Rs)" hint="For example 250000">
-            <input id="income" type="number" min="0" inputMode="numeric" value={f.income} onChange={set("income")} />
+          <Field errors={errors} id="income" label="Annual family income (Rs)" hint="For example 250000">
+            <input id="income" type="text" inputMode="numeric" autoComplete="off" value={f.income} onChange={(e) => setF({ ...f, income: e.target.value.replace(/[^0-9]/g, "") })} />
           </Field>
-          <Field id="course_level" label="Course level">
+          <Field errors={errors} id="course_level" label="Course level">
             <select id="course_level" value={f.course_level} onChange={set("course_level")}>
               <option value="">Select level</option>
               {["UG", "PG", "Diploma"].map((s) => <option key={s}>{s}</option>)}
             </select>
           </Field>
-          <Field id="year" label="Year of study">
+          <Field errors={errors} id="year" label="Year of study">
             <select id="year" value={f.year} onChange={set("year")}>
               <option value="">Select year</option>
               {[1, 2, 3, 4, 5, 6].map((s) => <option key={s}>{s}</option>)}
             </select>
           </Field>
-          <Field id="marks" label="Previous-year marks (%)">
-            <input id="marks" type="number" min="0" max="100" step="0.1" inputMode="decimal" value={f.marks} onChange={set("marks")} />
+          <Field errors={errors} id="marks" label="Previous-year marks (%)">
+            <input id="marks" type="text" inputMode="decimal" autoComplete="off" value={f.marks} onChange={(e) => setF({ ...f, marks: e.target.value.replace(/[^0-9.]/g, "") })} />
           </Field>
         </div>
         <div className="checks">
