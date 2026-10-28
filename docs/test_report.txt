@@ -1,0 +1,50 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.17, pytest-9.1.1, pluggy-1.7.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /home/claude/prototype/scholarship-matcher/backend
+plugins: platformdirs-4.12.4, anyio-4.15.1
+collecting ... collected 41 items
+
+tests/test_api.py::test_health PASSED                                    [  2%]
+tests/test_api.py::test_match_returns_both_lists_with_reasons PASSED     [  4%]
+tests/test_api.py::test_match_validation_errors PASSED                   [  7%]
+tests/test_api.py::test_match_does_not_store_student_data PASSED         [  9%]
+tests/test_api.py::test_list_and_filters PASSED                          [ 12%]
+tests/test_api.py::test_detail_and_404 PASSED                            [ 14%]
+tests/test_api.py::test_admin_requires_login PASSED                      [ 17%]
+tests/test_api.py::test_admin_crud_and_rules_as_data PASSED              [ 19%]
+tests/test_api.py::test_admin_rejects_invalid_criteria PASSED            [ 21%]
+tests/test_engine.py::test_inr_format PASSED                             [ 24%]
+tests/test_engine.py::test_income_boundary[249999-True] PASSED           [ 26%]
+tests/test_engine.py::test_income_boundary[250000-True] PASSED           [ 29%]
+tests/test_engine.py::test_income_boundary[250001-False] PASSED          [ 31%]
+tests/test_engine.py::test_marks_boundary[59.9-False] PASSED             [ 34%]
+tests/test_engine.py::test_marks_boundary[60-True] PASSED                [ 36%]
+tests/test_engine.py::test_marks_boundary[60.1-True] PASSED              [ 39%]
+tests/test_engine.py::test_failed_income_message_is_explained PASSED     [ 41%]
+tests/test_engine.py::test_category_list_case_insensitive PASSED         [ 43%]
+tests/test_engine.py::test_missing_field_fails_without_crash PASSED      [ 46%]
+tests/test_engine.py::test_boolean_fields PASSED                         [ 48%]
+tests/test_engine.py::test_all_criteria_must_pass PASSED                 [ 51%]
+tests/test_engine.py::test_worked_example_from_slides PASSED             [ 53%]
+tests/test_engine.py::test_validate_rejects_bad_rows[income-in-1] PASSED [ 56%]
+tests/test_engine.py::test_validate_rejects_bad_rows[income-<=-abc] PASSED [ 58%]
+tests/test_engine.py::test_validate_rejects_bad_rows[minority-==-maybe] PASSED [ 60%]
+tests/test_engine.py::test_validate_rejects_bad_rows[shoe_size-==-9] PASSED [ 63%]
+tests/test_engine.py::test_validate_rejects_bad_rows[state-<=-Kerala] PASSED [ 65%]
+tests/test_engine.py::test_validate_accepts_good_rows PASSED             [ 68%]
+tests/test_profiles.py::test_profile_matches_reference[P1] PASSED        [ 70%]
+tests/test_profiles.py::test_profile_matches_reference[P2] PASSED        [ 73%]
+tests/test_profiles.py::test_profile_matches_reference[P3] PASSED        [ 75%]
+tests/test_profiles.py::test_profile_matches_reference[P4] PASSED        [ 78%]
+tests/test_profiles.py::test_profile_matches_reference[P5] PASSED        [ 80%]
+tests/test_profiles.py::test_profile_matches_reference[P6] PASSED        [ 82%]
+tests/test_profiles.py::test_profile_matches_reference[P7] PASSED        [ 85%]
+tests/test_profiles.py::test_profile_matches_reference[P8] PASSED        [ 87%]
+tests/test_profiles.py::test_profile_matches_reference[P9] PASSED        [ 90%]
+tests/test_profiles.py::test_profile_matches_reference[P10] PASSED       [ 92%]
+tests/test_profiles.py::test_profile_matches_hand_derived[P1] PASSED     [ 95%]
+tests/test_profiles.py::test_profile_matches_hand_derived[P3] PASSED     [ 97%]
+tests/test_profiles.py::test_profile_matches_hand_derived[P10] PASSED    [100%]
+
+============================== 41 passed in 0.88s ==============================
